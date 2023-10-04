@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+data/*
+/.quarto/
+
+HDM.*
+HDM_files/*
+!HDM.qmd
+!HDM.Rproj
+!HDM.pdf

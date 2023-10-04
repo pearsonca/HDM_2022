@@ -1,0 +1,49 @@
+---
+format:
+  pdf:
+    margin-left: ".75in"
+    margin-right: ".75in"
+    margin-top: ".75in"
+    margin-bottom: ".75in"
+    include-in-header:
+      text: '\pagenumbering{gobble}'
+title-block-style: "none"
+fontsize: "8pt"
+---
+
+## Patient 42130 Details
+
+|                                      Overview                                       |               ICD9 Defs. (Codes)               |                                                                 Prescriptions                                                                  |
+|:-------------:|:----------------:|:----------------------------------:|
+| 63 yo WHITE MALE; LEFT SPHENOID MENENGIOMA/SDA; 102hr stay; 52hr in TSICU (ward 14) | Ben neo cerebr meninges (2252), Hypertension NOS (4019), Atrial fibrillation (42731), Hx-prostatic malignancy (V1046), Status cardiac pacemaker (V4501), Long-term use anticoagul (V5861) | 0.83% Sodium Chloride x1, 0.9% Sodium Chloride x10, 5% Dextrose x2, Acetaminophen x1, Bisacodyl x2, Calcium Gluconate x3, CefazoLIN x1, Dexamethasone x8, Dextrose 50% x1, Docusate Sodium x1, Glucagon x1, Heparin x1, HydrALAzine x2, Influenza Virus Vaccine x1, Insulin x3, LeVETiracetam x2, Magnesium Sulfate x3, Metoprolol Succinate XL x5, Metoprolol Tartrate x2, Morphine Sulfate x1, Neutra-Phos x1, NiCARdipine IV x1, Ondansetron x1, OxycoDONE (Immediate Release)  x1, Pantoprazole x3, Potassium Chloride x6, SW x1, Senna x1, Simvastatin x1, Valsartan x1 |
+
+![Vital Statistics During ICU Stay, time (hrs) from start of ICU treatment.](vitals_fig.png)
+
+## Similar Patients: 60-65 yo, w/ Cardiac Device
+
+| Gender | Outcome  |        Overall Stay (hours)        |        ICU Total (hours)         |
+|:------------:|:------------:|:--------------------:|:--------------------:|
+| Female | Survived | 200 (mn-mx: 43-1100, 50%Q: 16-360) | 74 (mn-mx: 18-730, 50%Q: 43-150) |
+|        |   Died   |  23 (mn-mx: 14-258, 50%Q: 18-170)  | 25 (mn-mx: 16-260, 50%Q: 19-170) |
+|  Male  | Survived | 150 (mn-mx: 22-650, 50%Q: 110-240) | 51 (mn-mx: 14-490, 50%Q: 33-88)  |
+|        |   Died   | 120 (mn-mx: 4.5-320, 50%Q: 53-180) | 77 (mn-mx: 21-250, 50%Q: 57-130) |
+
+## Notes
+
+-   To identify Simvastatin prescription, used the GSNs 016579 and 016577.
+-   assumed "60-65 year olds" = year portion of age between 60 and 64 (inclusive)
+-   numerical values rounded to 2 significant figures
+
+## Among Similar Patients, those that Died
+
+```{r}
+#| warning: false
+#| echo: false
+require(data.table)
+require(flextable)
+fread("data/summaried_table.csv") |> flextable(cwidth = c(1, 1, 1, 4)) |> fontsize(size = 8)
+```
+
+## Overview of ICU Stay Times
+
+![ICU Stay Times, by Unit, Age, and Simvastatin Prescription](icu_fig.png)
